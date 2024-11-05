@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+{% block title %}Продукты{% endblock %}
+
+{% block content %}
+    <section class="products-section">
+        {% for product in products %}
+            <div class="product-item">
+                <img src="/static/{{ product.image }}" alt="{{ product.name }}">
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.info }}</p>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

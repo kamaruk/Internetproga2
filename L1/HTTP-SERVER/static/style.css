@@ -1,0 +1,268 @@
+/* Общие стили */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8d7ba 25%, #f5e0c3 25%, #f5e0c3 50%, #f8d7ba 50%, #f8d7ba 75%, #f5e0c3 75%, #f5e0c3 100%);
+    background-size: 100px 100px;
+    color: #333;
+}
+
+h1, h2 {
+    color:  #e95f03;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: #d35400;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+/* Шапка сайта */
+header {
+    background-color: #f39c12;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+    header .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        header .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            font-size: 28px;
+            color: white;
+        }
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+        nav ul li a {
+            font-weight: 400;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+            nav ul li a:hover {
+                color: #333;
+            }
+
+/* Главный блок (Hero) */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;      
+    height: 100vh;            
+    background-image: url(image/pop.png);
+    background-size: cover;   
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-align: center;
+    color: white;
+    position: relative;       
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.hero h2, .hero p, .hero .btn {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero .btn {
+    background-color: #d35400;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.hero .btn:hover {
+    background-color: #e67e22;
+}
+
+/* Футер */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+/* Секция для страницы "О нас" */
+.about-section {
+    padding: 40px 20px;
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+    .about-section h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .about-section p {
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+/* Секция для страницы "Товары" */
+.products-section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.product-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex-grow: 1;
+}
+
+.product-info h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    font-size: 18px;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #d35400;
+}
+
+
+/* Секция для страницы "Контакты" */
+.contacts-section {
+    padding: 40px 20px;
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .contacts-section h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .contacts-section p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .contacts-section .contact-info {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .contacts-section .contact-form {
+        margin-top: 30px;
+    }
+
+        .contacts-section .contact-form label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .contacts-section .contact-form input,
+        .contacts-section .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contacts-section .contact-form button {
+            background-color: #d35400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+            .contacts-section .contact-form button:hover {
+                background-color: #e67e22;
+            }

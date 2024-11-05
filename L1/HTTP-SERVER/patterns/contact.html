@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+    <section class="contacts-section">
+            <h2>Свяжитесь с нами</h2>
+            <p>Вы можете связаться с нами по любым вопросам или оставить заявку на заказ:</p>
+            <div class="contact-info">
+                <p><strong>Телефон:</strong> +7 (900) 123-45-67</p>
+                <p><strong>Email:</strong> info@sladkoezhka.ru</p>
+            </div>
+            <form action="/Smessage" method="POST" class="contact-form">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Сообщение</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Отправить</button>
+            </form>
+    </section>
+{% endblock %}
