@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Наши продукты{% endblock %}
+
+{% block content %}
+    <h2>Наши продукты по категориям</h2>
+    <div class="category-list">
+        {% for category in categories %}
+            <div class="category-card">
+                <a href="{% url 'category' category %}" class="category-link">{{ category }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
