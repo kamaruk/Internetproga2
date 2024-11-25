@@ -1,0 +1,16 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Скидки{% endblock %}
+
+{% block content %}
+<h2>Акции и скидки</h2>
+<ul class="offer-list">
+    {% for offer in offers %}
+    <li class="offer-item">
+        <h3>{{ offer.title }}</h3>
+        <p>{{ offer.details }}</p>
+        <p class="offer-expiry">Действует до: {{ offer.expiry_date }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
