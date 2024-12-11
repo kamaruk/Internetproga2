@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <img src="{% static 'images/welcome.jpg' %}" alt="Добро пожаловать" class="welcome-image">
+    <div class="text-overlay">
+        <h1>Добро пожаловать в нашу кондитерскую!</h1>
+        <p>Мы рады предложить вам широкий ассортимент сладостей, выпечки и десертов, приготовленных с любовью.</p>
+    </div>
+</div>
+{% endblock %}
