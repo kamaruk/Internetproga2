@@ -38,3 +38,17 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} (для {self.cart.user.username})"
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    address = models.TextField()
+    email = models.EmailField()
+    status = models.CharField(max_length=20, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order #{self.id} by {self.user.username}"

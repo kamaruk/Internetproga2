@@ -647,62 +647,75 @@ nav a:hover {
     font-size: 1.2rem;
     color: #555;
 }
-/* Общий контейнер для центрации */
+
+/* Центрация контейнера */
 .checkout-container {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: auto;
 }
 
-.fon-image{
-    position: relative;
-    text-align: center;
-    margin: 20px 0;
-    color: white;
-
-}
 
 .fon-image {
-    width: 80%;
-    height:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+    object-fit: cover;
     border-radius: 10px;
 }
 
+.form-a {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Контейнер для формы оплаты */
-.checkout-form {
-    position: absolute;
-    background-color: #ffffff;
-    padding: 30px;
-    margin-top:200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 500px;
+label {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #555;
+}
+
+input, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     width: 100%;
 }
 
-
-.checkout-form h2 {
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: #333;
+textarea {
+    resize: none;
+    height: 80px;
 }
 
-/* Стиль для суммы */
+/* Сумма заказа */
 .total-price {
-    margin-top: 20px;
     font-size: 1.2rem;
     color: #333;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
+/* Кнопка Stripe */
 .stripe-button {
     display: block;
-    margin: 20px auto;
+    margin: 0 auto;
 }
-
 /* Фильтр */
 .filter-form {
     display: flex;
@@ -742,3 +755,107 @@ nav a:hover {
     background-color: #e67e22;
 }
 
+/* Общий стиль для кнопок */
+.btn_1 {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+#confirm_order_button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#confirm_order_button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#confirm_order_button:active {
+    transform: translateY(0);
+}
+
+
+#stripe_button {
+    background-color: #5469d4;
+    color: white;
+}
+
+#stripe_button:hover {
+    background-color: #4358c1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#stripe_button:active {
+    transform: translateY(0);
+}
+
+
+.btn_1:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+}
+
+
+.order-success-container {
+    background-color: #f4f7fb;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 50px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.order-success-container h2 {
+    font-size: 24px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.order-success-container p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+.order-success-container .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #5469d4;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+.order-success-container .btn:hover {
+    background-color: #4358c1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.order-success-container .btn:active {
+    transform: translateY(0); }

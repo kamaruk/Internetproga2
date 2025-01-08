@@ -5,20 +5,72 @@
 {% block content %}
 <div class="checkout-container">
     <img src="{% static 'images/fon.jpg' %}" alt="Fon" class="fon-image">
-    <div class="checkout-form">
-        <h2>Оплата заказа</h2>
-        <form action="{% url 'checkout' %}" method="post">
-            {% csrf_token %}
-            <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="{{ key }}"
-                data-amount="{{ total }}"
-                data-name="Кондитерская"
-                data-description="Оплата заказа"
-                data-currency="usd">
-            </script>
-        </form>
+    <h2>Оформление заказа</h2>
+
+    <!-- Форма для оформления заказа -->
+    <form method="post" action="{% url 'checkout' %}" id="checkout-form">
+        {% csrf_token %}
+        <label for="first_name">Имя:</label>
+        <input type="text" name="first_name" id="first_name" required>
+
+        <label for="last_name">Фамилия:</label>
+        <input type="text" name="last_name" id="last_name" required>
+
+        <label for="phone">Телефон:</label>
+        <input type="text" name="phone" id="phone" required>
+
+        <label for="address">Адрес:</label>
+        <textarea name="address" id="address" required></textarea>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+
         <p class="total-price">Сумма заказа: {{ total_rub }} ₽</p>
-    </div>
+
+
+        <button type="submit" name="confirm_order" id="confirm_order_button" class="btn_1">Оплатить при доставке</button>
+
+
+        <button  id="stripe_button" type="submit" class="btn_1">Оплатить онлайн</button>
+
+
+        <script
+            src="https://checkout.stripe.com/checkout.js"
+            id="stripe-button"
+            data-key="{{ key }}"
+            data-amount="{{ total }}"
+            data-name="Кондитерская"
+            data-description="Оплата заказа"
+            data-currency="usd">
+        </script>
+    </form>
 </div>
+
+<script>
+
+    document.getElementById('stripe_button').addEventListener('click', function(e) {
+        e.preventDefault();  // Prevent form submission
+        var stripeHandler = StripeCheckout.configure({
+            key: "{{ key }}",
+            image: "{% static 'images/logo.jpg' %}",
+            token: function(token) {
+
+                document.getElementById('checkout-form').submit();
+            }
+        });
+
+        stripeHandler.open({
+            name: "Кондитерская",
+            description: "Оплата заказа",
+            amount: {{ total }}
+        });
+    });
+
+
+    document.getElementById('confirm_order_button').addEventListener('click', function() {
+
+        document.getElementById('checkout-form').submit();
+    });
+</script>
+
 {% endblock %}

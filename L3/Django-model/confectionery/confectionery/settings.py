@@ -22,7 +22,7 @@ STRIPE_PUBLISHABLE_KEY = 'your_publishable_key'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-RUB_TO_USD_RATE = 106,19
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',

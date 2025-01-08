@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Заказ{% endblock %}
+
+{% block content %}
+  <div class="order-success-container">
+    <h2>Ваш заказ успешно оформлен!</h2>
+    <p>Спасибо за ваш заказ. Мы свяжемся с вами в ближайшее время.</p>
+    <a href="{% url 'index' %}" class="btn">На главную</a>
+  </div>
+{% endblock %}

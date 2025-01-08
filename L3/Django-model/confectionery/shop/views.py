@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, Order
 import stripe
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login
-from decimal import Decimal
+from django.contrib import messages
+
 
 
 # Главная страница
@@ -110,31 +111,52 @@ def contacts(request):
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Оплата
+# Оплата
+@login_required
 def checkout(request):
     cart = request.user.cart
     items = cart.cartitem_set.all()
 
-    print(f"RUB_TO_USD_RATE: {settings.RUB_TO_USD_RATE}")
+    total_rub = sum(item.product.price * item.quantity for item in items)
 
-    try:
-        RUB_TO_USD_RATE = Decimal(settings.RUB_TO_USD_RATE)
-    except Exception as e:
-        print(f"Ошибка преобразования RUB_TO_USD_RATE: {e}")
+    if request.method == "POST":
+        # Получаем данные из формы
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')  # Добавлен email
 
-        RUB_TO_USD_RATE = Decimal(0.013)
+        if not email:  # Если email не был передан, добавьте сообщение об ошибке
+            return render(request, 'shop/checkout.html', {
+                'error_message': "Пожалуйста, укажите ваш email",
+                'key': settings.STRIPE_PUBLISHABLE_KEY,
+                'total': int(total_rub * 1),
+                'total_rub': total_rub,
+            })
 
-    total_rub = sum(Decimal(item.product.price) * item.quantity for item in items)
+        order = Order.objects.create(
+            user=request.user,
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            address=address,
+            email=email,  # Заполняем email
+        )
 
-    total_usd = total_rub * RUB_TO_USD_RATE
+        # Очищаем корзину после оформления заказа
+        cart.cartitem_set.all().delete()
 
-    total_cents = int(total_usd * 100)
+        # Редиректим на страницу успешного заказа
+        return redirect('order_success')
 
+    # Передаем данные в шаблон
     return render(request, 'shop/checkout.html', {
         'key': settings.STRIPE_PUBLISHABLE_KEY,
-        'total': total_cents,
+        'total': int(total_rub * 1),
         'total_rub': total_rub,
-        'total_usd': total_usd,
     })
+
 
 # Проверка входа при добавлении в корзину
 def login_view(request):
@@ -148,3 +170,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
+def order_success(request):
+    return render(request, 'shop/order_success.html')
+
